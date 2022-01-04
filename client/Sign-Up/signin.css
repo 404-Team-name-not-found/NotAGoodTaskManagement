@@ -26,7 +26,7 @@ body {
 .container {
 	background-color: var(--bg-color);
 	border-radius: 2rem;
-  	box-shadow: 0 0rem 2rem -0.5rem;
+  	box-shadow: 0 0rem 2rem -1rem;
 	overflow: hidden;
 	width: 30rem;
 	max-width: 100%;
