@@ -5,7 +5,7 @@
 	box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
-/* :root {
+:root {
   --bg-color: #F9F9F9;
   --btn1-color: #060505;
   --btn-color: #EFA135;
@@ -14,9 +14,10 @@
   --3:#665B52;
   --4:#488BAA;
   
-} */
+}
 body {
-	background-color: var();
+	background-image: url("./bg.png");
+	background-size: cover;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -116,5 +117,8 @@ background-color: var(--btn1-color);
 	display: block;
 	margin-top: 1.5rem;
 	width: 100%;
-  color: var(--btn1-color);
+	cursor: pointer;
+}
+.form button:hover{
+	background-color: var(--2);
 }
