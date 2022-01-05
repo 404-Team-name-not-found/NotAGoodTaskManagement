@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('/Roots/root.scss');
+@import './root.scss';
 
 * {
 	box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
-:root {
+/* :root {
   --bg-color: #F9F9F9;
   --btn1-color: #060505;
   --btn-color: #EFA135;
@@ -14,9 +14,9 @@
   --3:#665B52;
   --4:#488BAA;
   
-}
+} */
 body {
-	background-color: var(--1);
+	background-color: var();
 	display: flex;
 	align-items: center;
 	justify-content: center;
