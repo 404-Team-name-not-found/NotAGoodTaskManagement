@@ -1,28 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('./root.css');
-
 * {
 	box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-}
-:root {
-  --bg-color: #F9F9F9;
-  --btn1-color: #060505;
-  --btn-color: #EFA135;
-  --1:#B5AFA4;
-  --2:#EB7A02;
-  --3:#665B52;
-  --4:#488BAA;
-  
-}
-body {
-	background-image: url("./bg.png");
-	background-size: cover;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-	margin: 0;
 }
 .container {
 	background-color: var(--bg-color);
@@ -57,7 +35,7 @@ background-color: var(--btn1-color);
 	margin-bottom: 1rem;
 }
 .form-control input {
-	border: 2px solid var(--3);
+	border: 2px solid var(--2);
 	border-radius: 0.8rem;
 	display: block;
 	font-family: inherit;
@@ -66,20 +44,16 @@ background-color: var(--btn1-color);
 	width: 100%;
 	margin-bottom: 1rem;
 }
-
 .form-control input:focus {
 	outline: 0;
 	border-color: #777;
 }
-
 .form-control.success input {
 	border-color: #2ecc71;
 }
-
 .form-control.error input {
 	border-color: #e74c3c;
 }
-
 .form-control i {
 	visibility: hidden;
 	position: absolute;
@@ -104,11 +78,9 @@ background-color: var(--btn1-color);
 	left: 0;
 	visibility: hidden;
 }
-
 .form-control.error small {
 	visibility: visible;
 }
-
 .form button {
 	background-color: var(--btn-color);
 	border: none ;
