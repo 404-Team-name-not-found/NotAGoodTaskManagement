@@ -12,7 +12,7 @@ body{
 }
 .dashboard{
     background-color: var(--bg-color);
-    border: 1rem solid var(--btn1-color);
+    border: 0.5rem solid var(--btn1-color);
     min-height: 80vh;
     border-radius: 8rem;
     padding: 1rem;
@@ -21,14 +21,12 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: 5rem;
+    padding: 2rem;
 }
 .container{
     padding: 1rem;
     border-radius: 3rem;
     height: 60vh;
-    width: 12vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -41,29 +39,31 @@ body{
     background-color: var(--btn-color);
     padding: 1rem;
     box-shadow: 0rem 0rem 1rem -0.5rem;
-    border-radius: 3rem;
+    border-radius: 2rem;
     height: 8vh;
     width: 10vw;
     flex-direction: column;
-    margin-bottom:2rem;
+    margin-bottom:1rem;
 }
 .colordiv{
     background-color: gray;
-    height: 0.5vh;
+    height: .5vh;
     width: 9vw;
-    border-radius: 20rem;
+    border-radius: 5rem;
 }
 .text{
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: bold;
+    margin: 1rem;
 }
 .draggable{
     padding: 1rem;
     box-shadow: 0rem 0rem 1rem -0.5rem;
     cursor: move;
-    border-radius: 3rem;
-    height: 8vh;
+    border-radius: 2rem;
+    height: 4vh;
     width: 10vw;
+    margin: 0.5rem;
 }
 .draggable.dragging {
     opacity: .5;
