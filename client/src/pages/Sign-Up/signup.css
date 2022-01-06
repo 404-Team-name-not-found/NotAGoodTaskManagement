@@ -1,39 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 * {
 	box-sizing: border-box;
 }
+
 .container {
 	background-color: var(--bg-color);
 	border-radius: 2rem;
-  	box-shadow: 0 0rem 2rem -1rem;
+  box-shadow: 0 0rem 2rem -1rem;
 	overflow: hidden;
 	width: 30rem;
 	max-width: 100%;
 }
+
 .header {
-background-color: var(--btn1-color);
+  background-color: var(--btn1-color);
   color: var(--bg-color);
-   padding: 1rem 5rem;
+  padding: 1rem 5rem;
   text-align: center;
   width: 60%;
   margin-left: 20%;
   border-radius: 0 0 2rem 2rem;
 }
+
 .header h2 {
 	margin: 0;
 }
+
 .form {
 	padding: 2rem 4rem;	
 }
+
 .form-control {
 	margin-bottom: 1rem;
 	padding-bottom: 0.5rem;
 	position: relative;
 }
+
 .form-control label {
 	display: inline-block;
 	margin-bottom: 1rem;
 }
+
 .form-control input {
 	border: 2px solid var(--2);
 	border-radius: 0.8rem;
@@ -44,16 +52,20 @@ background-color: var(--btn1-color);
 	width: 100%;
 	margin-bottom: 1rem;
 }
+
 .form-control input:focus {
 	outline: 0;
 	border-color: #777;
 }
+
 .form-control.success input {
 	border-color: #2ecc71;
 }
+
 .form-control.error input {
 	border-color: #e74c3c;
 }
+
 .form-control i {
 	visibility: hidden;
 	position: absolute;
@@ -78,9 +90,11 @@ background-color: var(--btn1-color);
 	left: 0;
 	visibility: hidden;
 }
+
 .form-control.error small {
 	visibility: visible;
 }
+
 .form button {
 	background-color: var(--btn-color);
 	border: none ;
@@ -91,6 +105,7 @@ background-color: var(--btn1-color);
 	width: 100%;
 	cursor: pointer;
 }
+
 .form button:hover{
 	background-color: var(--2);
 }
