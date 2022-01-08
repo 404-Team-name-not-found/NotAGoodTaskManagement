@@ -1,103 +1,99 @@
 const pool = require("./server/services/sql.connections").pool;
-/**
- * Given a table name, return all the rows within the table
- * @param {String} tableName
- * @returns {object}
- */
-async function getItems(tableName) {
-  const client = await pool.connect();
-  const res = client.query(`SELECT * FROM "${tableName}"`);
-  client.release();
-  return (await res).rows;
-}
-
-/**
- * Given a table name and a specific id, return the specifc row from the table with the given id
- * @param {string} tableName
- * @param {number} id
- * @returns {object}
- */
-async function getItem(tableName, id) {
-  const client = await pool.connect();
-  const res = client.query(`SELECT * FROM "${tableName}" WHERE id=${id}`);
-  client.release();
-  return (await res).rows;
-}
-
-/**
- * Given a table name and an id, remove the row in the table with the given id
- * @param {String} tableName
- * @param {Number} id
- * @returns
- */
-async function DeleteItem(tableName, id) {
-  const client = await pool.connect();
-  const res = client.query(
-    `DELETE FROM ${tableName} WHERE id=${id} RETURNING * `
-  );
-  client.release();
-  return (await res).rows;
-}
-
-/**
- * check if the given value is exist in the table in the given column
- * @param {String} tablename
- * @param {String} colname
- * @param {*} value
- * @returns
- */
-async function checkExist(tablename, colname, value) {
-  const client = await pool.connect();
-  const res = client
-    .query(`SELECT count(*) FROM  "${tablename}" where ${colname}='${value}'`)
-    .then((res) => res.rows[0].count >= 1);
-  client.release();
-  return await res;
-}
 
 //helper function
 const getKeysAndValues = (object) => {
-  delete object.id;
-  const keys = Object.keys(object);
-  return [keys, keys.map((key) => object[key])];
+  const newObj = JSON.parse(JSON.stringify(object));
+  delete newObj.id;
+  const keys = Object.keys(newObj);
+  console.log(object);
+  return [keys, keys.map((key) => newObj[key])];
 };
 
 /**
- * update a specific item with the given id in the given table
- * @param {Number} itemId the item id
- * @param {String} tableName the table name
- * @param {Object} change the object AFTER the change
- * @returns
+ * Used to get all rows within a specific table.
+ * @param {string} tableName
+ * @resolve the requested table
  */
-async function updateSpecificItem(itemId, tableName, change) {
-  [keys, values] = getKeysAndValues(change);
-  const update = keys.map((key, index) => `"${key}" = $${index + 1}`).join(",");
-  const query = `UPDATE public."${tableName}" SET ${update} WHERE id = ${itemId} RETURNING *`;
-  const client = await pool.connect();
-  const res = client.query(query, values);
-  client.release();
-  return await (
-    await res
-  ).rows;
-}
-/**
- *
- * @param {String} query the query
- * @param {Array} values values in the query
- * @returns
- */
-async function sendCustomQuery(query, values) {
-  const client = await pool.connect();
-  const res = client.query(query, values);
-  client.release();
-  return (
-    await res
-  ).rows;
+async function getItems(tableName) {
+  const res = pool.query(`SELECT * FROM "${tableName}"`);
+  return (await res).rows;
 }
 
-module.exports.DeleteItem = DeleteItem;
-module.exports.getItems = getItems;
-module.exports.getItem = getItem;
-module.exports.updateSpecificItem = updateSpecificItem;
-module.exports.checkExist = checkExist;
-module.exports.sendCustomQuery=sendCustomQuery;
+/**
+ * Used to get specific rows where propery = value
+ * @param {string} tableName
+ * @param {string} property
+ * @param {string} value
+ * @resolve the requested items
+ */
+async function getItem(tableName,property,value) {
+  const res = pool.query(`SELECT * FROM "${tableName}" WHERE ${property}='${value}'`);
+  return (await res).rows;
+}
+
+/**
+ * Used to delete a specific row from a specific table
+ * @param {string} tableName
+ * @param {Number} id
+ * @resolve The row that was deleted
+ */
+async function DeleteItem(tableName, id) {
+  const res = pool.query(
+    `DELETE FROM ${tableName} WHERE id=${id} RETURNING * `);
+  return (await res).rows;
+}
+
+/**
+ * Used to check if a value exist in a spesific column
+ * @param {string} tablename
+ * @param {string} colname
+ * @param {*} value
+ * @resolve true if exist, false otherwise
+ */
+async function isExist(tablename, colname, value) {
+  const res = pool
+    .query(`SELECT count(1) FROM  "${tablename}" where ${colname}='${value}'`)
+    .then((res) => res.rows[0].count >= 1);
+  return await res;
+}
+
+/**
+ * Used to update a specific item with where primaryKey = value
+ * @param {string} primaryKey item primary key
+ * @param {*} value 
+ * @param {string} tableName the table name
+ * @param {Object} change the object AFTER the change
+ * @resolve the updated row
+ */
+async function updateSpecificItem(primaryKey,value, tableName, change) {
+  const [keys, values] = getKeysAndValues(change);
+  const update = keys.map((key, index) => `"${key}" = $${index + 1}`).join(",");
+  const query = `UPDATE public."${tableName}" SET ${update} WHERE "${primaryKey}" = ${value} RETURNING *`;
+  const res = pool.query(query, values);
+  return await res.rows;
+}
+/**
+ * Used to send a custom query 
+ * @param {string} query 
+ * @param {array} values 
+ * @resolve The query result
+ */
+async function sendCustomQuery(query, values) {
+  const res = pool.query(query, values);
+  return (await res).rows;
+}
+/**
+ * Used to insert a item into the db
+ * @param {string} tablename 
+ * @param {*} objectToInsert 
+ * @resolve the created item
+ */
+async function InsertItem(tablename,objectToInsert) {
+  const [keys,values]= getKeysAndValues(objectToInsert);
+  const pramKeys = keys.map((item) => `"${item}"` ).join(',');
+  const valuesString = [...Array(values.length)].map((c,index)=> `$${index+1}`).join(',');
+  const query= `INSERT INTO "${tablename}" (${pramKeys}) VALUES (${valuesString}) RETURNING *`;
+  const res = pool.query(query,values);
+  return (await res).rows;
+}
+module.exports = {getItem,getItems,DeleteItem,updateSpecificItem,isExist,sendCustomQuery,InsertItem};
