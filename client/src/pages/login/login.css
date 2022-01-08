@@ -1,0 +1,123 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #B5AFA4;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container{
+  background: white;
+  width: 380px;
+  text-align: center;
+  padding: 40px 30px 50px 30px;
+  border-radius: 10px;
+}
+
+.container header{
+  font-size: 35px;
+  font-weight: 700;
+  border-bottom: 1px solid black;
+  padding: 20px;
+}
+
+.container form{
+  margin: 40px 0;
+}
+
+form input{
+  height: 50px;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+  padding: 0 15px;
+  font-size: 18px;
+}
+
+form .username-field{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+form input::placeholder{
+  color: black;
+  font-size: 17px;
+}
+
+form .username-field .input{
+  position: relative;
+} 
+
+form .username-field .error-text{
+  margin-top: 5px;
+  color: red;
+  text-align: left;
+}
+
+form .username-field .invalid-text{
+  margin-top: 5px;
+  color: red;
+  text-align: left;
+}
+
+form .username-field .error2{
+  display: none;
+}
+
+form .username-field.error2 .error2{
+  display: block;
+}
+
+form .password-field .error-text{
+  margin-top: 5px;
+  color: red;
+  text-align: left;
+}
+
+form .username-field .error{
+  display: none;
+}
+
+form .username-field.error .error{
+  display: block;
+}
+
+form .password-field .error{
+  display: none;
+}
+
+form .password-field.error .error{
+  display: block;
+}
+
+form .password-link{
+  text-align: left;
+  margin-top: 10px;
+}
+
+.container a{
+  text-decoration: none;
+}
+
+.container a:hover{
+  text-decoration: underline;
+}
+
+form input[type="submit"]{
+  margin-top: 30px;
+  border: none;
+  background: #EFA135;
+  color: white;
+  cursor: pointer;
+}
+
+
+
