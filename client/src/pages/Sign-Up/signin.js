@@ -24,6 +24,8 @@ const checkInputs = () => {
 	}
 	if(passwordValue === '') {
 		setErrorFor(password, 'Password cannot be blank');
+	} else if (!isPassword(passwordValue)){
+		setErrorFor(password, 'Not a valid password');
 	} else {
 		setSuccessFor(password);
 	}
@@ -47,6 +49,9 @@ const setSuccessFor = (input) => {
 }
 const isEmail = (email) => {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+const isPassword = (password) => {
+	return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
 }
 form.addEventListener('submit', e => {
 	e.preventDefault();

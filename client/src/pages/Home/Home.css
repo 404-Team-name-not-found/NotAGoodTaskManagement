@@ -1,0 +1,22 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+}
+.section1{
+background-color: aqua;
+width: 20%;
+}
+.section2{
+background-color: bisque;
+width: 90%;
+}
+.nav-bar{
+    background-color: blue;
+    height: 10%;
+}
+.content{
+    background-color: blueviolet;
+    height: 90%;
+}
