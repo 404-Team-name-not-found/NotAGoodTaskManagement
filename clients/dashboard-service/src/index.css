@@ -1,0 +1,23 @@
+:root {
+  --bg-color: #F9F9F9;
+  --btn1-color: #060505;
+  --btn-color: #fbab16;
+  --btn2-hover:#EB7A02;
+  --1:#B5AFA4;
+  --2:#665B52;
+  --3:#488BAA;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif; 
+}
+
+body {
+  background-image: url("./assets/bg.png");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
