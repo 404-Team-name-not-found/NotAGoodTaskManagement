@@ -5,7 +5,6 @@ const getKeysAndValues = (object) => {
   const newObj = JSON.parse(JSON.stringify(object));
   delete newObj.id;
   const keys = Object.keys(newObj);
-  console.log(object);
   return [keys, keys.map((key) => newObj[key])];
 };
 
@@ -65,13 +64,14 @@ async function isExist(tablename, colname, value) {
  * @param {Object} change the object AFTER the change
  * @resolve the updated row
  */
-async function updateSpecificItem(primaryKey,value, tableName, change) {
+async function updateSpecificItem(primaryKey, value, tableName, change) {
   const [keys, values] = getKeysAndValues(change);
   const update = keys.map((key, index) => `"${key}" = $${index + 1}`).join(",");
   const query = `UPDATE public."${tableName}" SET ${update} WHERE "${primaryKey}" = ${value} RETURNING *`;
   const res = pool.query(query, values);
   return await res.rows;
 }
+
 /**
  * Used to send a custom query 
  * @param {string} query 
@@ -82,13 +82,14 @@ async function sendCustomQuery(query, values) {
   const res = pool.query(query, values);
   return (await res).rows;
 }
+
 /**
  * Used to insert a item into the db
  * @param {string} tablename 
  * @param {*} objectToInsert 
  * @resolve the created item
  */
-async function InsertItem(tablename,objectToInsert) {
+async function InsertItem(tablename, objectToInsert) {
   const [keys,values]= getKeysAndValues(objectToInsert);
   const pramKeys = keys.map((item) => `"${item}"` ).join(',');
   const valuesString = [...Array(values.length)].map((c,index)=> `$${index+1}`).join(',');
@@ -96,4 +97,4 @@ async function InsertItem(tablename,objectToInsert) {
   const res = pool.query(query,values);
   return (await res).rows;
 }
-module.exports = {getItem,getItems,DeleteItem,updateSpecificItem,isExist,sendCustomQuery,InsertItem};
+module.exports = {getItem, getItems, DeleteItem, updateSpecificItem, isExist, sendCustomQuery, InsertItem};
