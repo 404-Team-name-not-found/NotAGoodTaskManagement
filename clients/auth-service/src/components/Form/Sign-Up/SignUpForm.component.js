@@ -1,8 +1,8 @@
-import { injectHTMLToElement } from '../../utils/dom.service';
-import './Form.style.css';
+import { injectHTMLToElement } from '../../../utils/dom.service';
+import './SignUpForm.style.css';
 
 
-function Form({ injectTo }) {
+function SignUpForm({ injectTo }) {
   const FormTemplate = `
     <form id="form" class="form">
       <div class="form-control">
@@ -43,4 +43,4 @@ function Form({ injectTo }) {
   injectHTMLToElement(FormTemplate, injectTo);
 }
 
-export default Form;
+export default SignUpForm;
