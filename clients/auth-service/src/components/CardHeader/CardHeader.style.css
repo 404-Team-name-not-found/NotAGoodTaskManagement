@@ -1,0 +1,13 @@
+.card__header {
+  background-color: var(--btn1-color);
+  color: var(--bg-color);
+  padding: 1rem 5rem;
+  text-align: center;
+  width: 60%;
+  margin-left: 20%;
+  border-radius: 0 0 2rem 2rem;
+}
+
+.header h2 {
+	margin: 0;
+}

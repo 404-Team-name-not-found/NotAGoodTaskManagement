@@ -7,9 +7,11 @@
     --2:#665B52;
     --3:#488BAA;
   }
-  *{
+
+  * {
     font-family: 'Montserrat', sans-serif; 
   }
+
   body {
     background-image: url("/client/src/assets/bg.png");
     background-size: cover;

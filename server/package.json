@@ -4,18 +4,19 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-      "start": "node server.js",
-      "server": "nodemon server.js"
+        "start": "node server.js",
+        "server": "nodemon server.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "config": "^3.3.6",
-      "fastify": "^3.25.3",
-      "fastify-swagger": "^4.13.0",
-      "uuid": "^8.3.2"
+        "config": "^3.3.6",
+        "fastify": "^3.25.3",
+        "fastify-swagger": "^4.13.0",
+        "pg": "^8.7.1",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
-      "nodemon": "^2.0.15"
+        "nodemon": "^2.0.15"
     }
-  }
+}
