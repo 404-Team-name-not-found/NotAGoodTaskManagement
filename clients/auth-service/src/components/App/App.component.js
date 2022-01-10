@@ -7,7 +7,7 @@ import './app.style.css';
 const getCurrentLocation = () => window.location.href.split('/').pop();
 
 function App({ injectTo }) {
-  const currentLocation = "sign-up";
+  const currentLocation = "log-in";
   
   const appTemplate = `<div id="card-container" class="card-container"/>`;
   injectHTMLToElement(appTemplate, injectTo);
@@ -21,7 +21,7 @@ function App({ injectTo }) {
     };
 
     case 'log-in': {
-      CardHeader({ injectTo: cardContainer, title: 'something' });
+      CardHeader({ injectTo: cardContainer, title: 'Login' });
       LoginForm({ injectTo: cardContainer });
       break;
     };

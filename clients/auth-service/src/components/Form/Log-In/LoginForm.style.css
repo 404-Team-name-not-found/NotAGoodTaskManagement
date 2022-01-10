@@ -15,8 +15,8 @@ body {
 
 .container{
   background: var(--bg-color);
-  width: 480px;
-  height: 710px;
+  width: 32rem;
+  height: 32rem;
   text-align: center;
   border-radius: 2rem;
   box-shadow: 0 0rem 2rem -1rem;
@@ -44,6 +44,7 @@ form input{
   border: 1px solid black;
   border-radius: 20px;
   outline: none;
+  margin-right: 2rem;
   padding: 0 15px;
   font-size: 18px;
 }
@@ -111,7 +112,7 @@ form .password-field.error .error{
 form .password-link{
   text-align: left;
   margin-top: 2rem;
-  margin-left: 55px;
+  margin-left: 2.5rem;
 }
 
 .signup-link{
