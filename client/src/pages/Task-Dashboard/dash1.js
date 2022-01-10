@@ -1,5 +1,8 @@
 const draggables = document.querySelectorAll('.draggable')
 const containers = document.querySelectorAll('.container')
+const countDiv = document.getElementById('count')
+
+countDiv.innerHTML = "Total Tasks: "+ draggables.length
 
 draggables.forEach(draggable => {
     draggable.addEventListener('dragstart',() => {
@@ -15,12 +18,14 @@ containers.forEach(container => {
     container.addEventListener('dragover', e => {
         e.preventDefault()
         const afterElement = getDragAfterElement(container, e.clientY)
-        console.log(afterElement)
+        // console.log(afterElement)
         const draggable = document.querySelector('.dragging')
         if (afterElement == null){
             container.appendChild(draggable)
+            container.querySelector('count').innerHTML = "@" + container.querySelectorAll('.draggable').length
         } else {
             container.insertBefore(draggable, afterElement)
+            container.querySelector('count').innerHTML = "@" + container.querySelectorAll('.draggable').length
         }
     })
 })
@@ -38,3 +43,6 @@ function getDragAfterElement(container, y) {
         }
    }, { offset: Number.NEGATIVE_INFINITY }).element
 }
+
+
+

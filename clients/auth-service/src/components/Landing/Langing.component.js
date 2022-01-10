@@ -31,6 +31,15 @@ function landingPage({ injectTo }) {
   `;
 
   injectHTMLToElement(FormTemplate, injectTo);
+
+  const start = document.getElementById('start')
+  const popup = document.getElementById('new')
+
+  start.addEventListener('click' , () => {
+      console.log('hey')
+      // popup.innerHTML = comp1 
+  })
+
 }
 
 export default landingPage;

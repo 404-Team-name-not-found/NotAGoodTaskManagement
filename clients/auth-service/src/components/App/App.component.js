@@ -8,27 +8,33 @@ import './app.style.css';
 const getCurrentLocation = () => window.location.href.split('/').pop();
 
 function App({ injectTo }) {
-  const currentLocation = getCurrentLocation();
+  const currentLocation = 'landing';
   
   const appTemplate = `<div id="card-container" class="card-container"/>`;
-  injectHTMLToElement(appTemplate, injectTo);
-  const cardContainer = document.getElementById('card-container');
+  const appMain = `<div id="landing" class="landing"/>`;
+
   console.log(currentLocation);
   switch (currentLocation) {
     case 'sign-up': {
+      injectHTMLToElement(appTemplate, injectTo);
+      const cardContainer = document.getElementById('card-container');
       CardHeader({ injectTo: cardContainer, title: 'something' });
       SignUpForm({ injectTo: cardContainer });
       break;
     };
 
     case 'log-in': {
+      injectHTMLToElement(appTemplate, injectTo);
+      const cardContainer = document.getElementById('card-container');
       CardHeader({ injectTo: cardContainer, title: 'something' });
       LoginForm({ injectTo: cardContainer });
       break;
     };
 
     case 'landing': {
-      landingPage({ injectTo: cardContainer });
+      injectHTMLToElement(appMain, injectTo);
+      const mainPage = document.getElementById('landing');
+      landingPage({ injectTo: mainPage });
       break;
     };
 

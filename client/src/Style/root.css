@@ -1,23 +1,38 @@
-  :root {
-    --bg-color: #F9F9F9;
-    --btn1-color: #060505;
-    --btn-color: #fbab16;
-    --btn2-hover:#EB7A02;
-    --1:#B5AFA4;
-    --2:#665B52;
-    --3:#488BAA;
-  }
+:root {
+  --bg-color: #F9F9F9;
+  --btn1-color: #060505;
+  --btn-color: #fbab16;
+  --btn2-hover:#EB7A02;
+  --1:#B5AFA4;
+  --2:#665B52;
+  --3:#488BAA;
+}
 
-  * {
-    font-family: 'Montserrat', sans-serif; 
-  }
+* {
+  font-family: 'Montserrat', sans-serif; 
+}
 
-  body {
-    background-image: url("/client/src/assets/bg.png");
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
-  }
+body {
+  background-image: url("/client/src/assets/bg.png");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.button {
+  background-color: var(--btn-color);
+  border: none ;
+  border-radius:1rem;
+  color: var(--bg-color);
+  display: block;
+  margin-top: 1.5rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button:hover{
+  background-color: var(--2);
+}

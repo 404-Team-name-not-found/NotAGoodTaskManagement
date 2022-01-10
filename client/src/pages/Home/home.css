@@ -1,68 +1,31 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #fafafa;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
+@import "../Task-Dashboard/dash1.css"; 
 
-.wrapper {
-  display: flex;
-  align-items: stretch;
-  width: 15%;
-  height: 100%;
+.main{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
 }
-
-.content {
-  width: 85%;
-  height: 100%;
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.sidebar {
-  background: #fbab16;
-  color: #fff;
-  transition: all 0.3s;
+.section1{
+width: 20%;
 }
-
-.sidebar .sidebar-header {
-  padding: 20px;
-  background: #EB7A02;
+.section2{
+width: 80%;
+height: 100%;
 }
-
-.sidebar ul.components {
-  padding: 20px 0;
+.nav-bar{
+    background-color: blue;
+    height: 10%;
 }
-
-.sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-.sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-
-.sidebar ul li a:hover {
-  color: #fbab16;
-  background: #fff;
-}
-
-.sidebar ul li.active > a, a[aria-expanded="true"] {
-  color: #fff;
-  background: #EB7A02;
-}
-
-ul ul a {
-  font-size: 0.9em !important;
-  padding-left: 30px !important;
-  background: #EB7A02;
-}
-
-a, a:hover, a:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
+.content{
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
