@@ -29,7 +29,7 @@
 	border-color: #777;
 }
 
-.input-field.success input {
+.input-field.successful input {
 	border-color: #2ecc71;
 }
 
@@ -44,7 +44,7 @@
 	right: 10px;
 }
 
-.input-field.success i.fa-check-circle {
+.input-field.successful i.fa-check-circle {
 	color: #2ecc71;
 	visibility: visible;
 }
@@ -75,8 +75,10 @@
 	margin-top: 1.5rem;
 	width: 100%;
 	cursor: pointer;
+	padding: 0.5rem;
+	text-align: center;
 }
 
 .form button:hover{
-	background-color: var(--2);
+	background-color: var(--btn2-hover);
 }

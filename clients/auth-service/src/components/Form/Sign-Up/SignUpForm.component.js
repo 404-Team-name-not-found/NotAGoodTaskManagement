@@ -7,32 +7,32 @@ function SignUpForm({ injectTo }) {
       <div class="input-field">
       <label for="username">Username</label>
       <input type="text" placeholder="Username" id="username" />
-      <i class="fas fa-check-circle"></i>
-      <i class="fas fa-exclamation-circle"></i>
+      <i class="checkcircle"></i>
+      <i class="exclamationcircle"></i>
       <small>Error message</small>
       </div>
       
       <div class="input-field">
       <label for="username">Email</label>
       <input type="email" placeholder="name@email.com" id="email" />
-      <i class="fas fa-check-circle"></i>
-      <i class="fas fa-exclamation-circle"></i>
+      <i class="checkcircle"></i>
+      <i class="exclamationcircle"></i>
       <small>Error message</small>
       </div>
 
       <div class="input-field">
       <label for="username">Password</label>
       <input type="password" placeholder="Password" id="password"/>
-      <i class="fas fa-check-circle"></i>
-      <i class="fas fa-exclamation-circle"></i>
+      <i class="checkcircle"></i>
+      <i class="exclamationcircle"></i>
       <small>Error message</small>
       </div>
 
       <div class="input-field">
       <label for="username">Password check</label>
       <input type="password" placeholder="Password two" id="password2"/>
-      <i class="fas fa-check-circle"></i>
-      <i class="fas fa-exclamation-circle"></i>
+      <i class="checkcircle"></i>
+      <i class="exclamationcircle"></i>
       <small>Error message</small>
       </div>
       <button><h1>Submit</h1></button>
@@ -56,10 +56,11 @@ function SignUpForm({ injectTo }) {
 
 const setSuccessFor = (input) => {
   const formControl = input.parentElement;
-  formControl.className = 'form-control success';
+  formControl.className = 'input-field successful';
 };
 
 const isEmail = (email) => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+const isPassword = (password) => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
 
 const checkInputs = () => {
   const usernameValue = username.value.trim();
@@ -83,6 +84,8 @@ const checkInputs = () => {
 
   if(passwordValue === '') {
     setErrorFor(password, 'Password cannot be blank');
+  } else if (!isPassword(passwordValue)){
+    setErrorFor(password, 'Not a valid password');
   } else {
     setSuccessFor(password);
   }

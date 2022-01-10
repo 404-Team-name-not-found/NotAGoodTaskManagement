@@ -9,22 +9,19 @@ form.onsubmit = (e) => {
   
   if(userNameInput.value === ''){
     userNameField.classList.add("error");
-  }
-  else{
+  } else{
     userNameField.classList.remove("error");
   }
   
   if(!usernameLetterValid(userNameInput.value.trim())){
     userNameField.classList.add("error2")
-  }
-  else{
+  } else{
     userNameField.classList.remove("error2");
   }
 
   if(passwordInput.value === ''){
     passwordField.classList.add("error");
-  }
-  else{
+  } else{
     passwordField.classList.remove("error");
   }
 
