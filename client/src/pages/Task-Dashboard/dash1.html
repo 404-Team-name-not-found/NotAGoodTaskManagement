@@ -9,68 +9,82 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- <div class="title-head">
-        <div class="story"> #Story </div>
-        <button> more </button>
-    </div> -->
-        <div class="dashboard">
-            <div class="section1">
-                <div class="left">
-                    <h1 id="count"> </h1>
-                </div>
-                <div class="right">
-                    <button><h1>Add Task</h1></button>
-                    <button><h1>Backlog</h1></button>
-                </div>
+    <div class="dashboard">
+        <div class="section1">
+            <div class="left">
+                <h1 id="count"> </h1>
             </div>
-            <div class="section">
-                <div class="container" >
-                    <div class="title">
-                        <h2 class="counter"> </h2>
-                        <p class="text"> To Do </p>
-                        <div class="colordiv" style="background-color: red;"></div>    
-                    </div>
-                    <p class="draggable" draggable="true">1</p>
-                    <p class="draggable" draggable="true">2</p>
-                </div>
-                <div class="container">
-                    <div class="title">
-                        <h2 class="counter"> </h2>
-                        <p class="text"> In Sprint </p>
-                        <div class="colordiv" style="background-color: yellow;"></div>    
-                    </div>
-                    <p class="draggable" draggable="true">3</p>
-                    <p class="draggable" draggable="true">4</p>
-                </div>
-                <div class="container">
-                    <div class="title">
-                        <h2 class="counter"> </h2>
-                        <p class="text"> In Progress </p>
-                        <div class="colordiv" style="background-color: blue;"></div>    
-                    </div>
-                    <p class="draggable" draggable="true">3</p>
-                    <p class="draggable" draggable="true">4</p>
-                </div>
-                <div class="container">
-                    <div class="title">
-                        <h2 class="counter"> </h2>
-                        <p class="text"> Ready For CR </p>
-                        <div class="colordiv" style="background-color: purple;"></div>    
-                    </div>
-                    <p class="draggable" draggable="true">3</p>
-                    <p class="draggable" draggable="true">4</p>
-                </div>
-                <div class="container">
-                    <div class="title">
-                        <h2 class="counter"> </h2>
-                        <p class="text"> Completed </p>
-                        <div class="colordiv" style="background-color: green;"></div>    
-                    </div>
-                    <p class="draggable" draggable="true">3</p>
-                    <p class="draggable" draggable="true">4</p>
-                </div>
+            <div class="right">
+                <button><h1>Add Task</h1></button>
+                <button><h1>Backlog</h1></button>
             </div>
         </div>
+        <div class="section">
+            <div class="container" >
+                <div id="title" class="title">
+                    <div class="title-head">
+                        <p class="text"> To Do </p>
+                        <h2 class="counter"> </h2>
+                    </div>
+                    <div class="progress"><div class="colordiv" style="background-color: red;"></div></div>
+                </div>
+                <p class="draggable" draggable="true">1</p>
+                <p class="draggable" draggable="true">2</p>
+            </div>
+            <div class="container">
+                <div id="title" class="title">
+                    <div class="title-head">
+                        <p class="text"> In Sprint </p>
+                        <h2 class="counter"> %</h2>
+                    </div>
+                    <div class="progress">
+                        <div class="colordiv" style="background-color: yellow;"></div>    
+                    </div>   
+                </div>
+                <p class="draggable" draggable="true">3</p>
+                <p class="draggable" draggable="true">4</p>
+            </div>
+            <div class="container">
+                <div id="title" class="title">
+                    <div class="title-head">
+                        <p class="text"> In Progress </p>
+                        <h2 class="counter"> %</h2>
+                    </div>
+                    <div class="progress">
+                        <div class="colordiv" style="background-color: blue;"></div>    
+                    </div>  
+                </div>
+                <p class="draggable" draggable="true">3</p>
+                <p class="draggable" draggable="true">4</p>
+            </div>
+            <div class="container">
+                <div id="title" class="title">
+                    <div class="title-head">
+                        <p class="text"> Ready For CR </p>
+                        <h2 class="counter"> %</h2>
+                    </div>
+                    <div class="progress">
+                        <div class="colordiv" style="background-color: purple;"></div>    
+                    </div>  
+                </div>
+                <p class="draggable" draggable="true">3</p>
+                <p class="draggable" draggable="true">4</p>
+            </div>
+            <div class="container">
+                <div id="title" class="title">
+                    <div class="title-head">
+                        <p class="text"> Completed </p>
+                        <h2 class="counter"> %</h2>
+                    </div>
+                    <div class="progress">
+                        <div class="colordiv" style="background-color: green;"></div>    
+                    </div> 
+                </div>
+                <p class="draggable" draggable="true">3</p>
+                <p class="draggable" draggable="true">4</p>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="dash1.js"></script>
 </html>

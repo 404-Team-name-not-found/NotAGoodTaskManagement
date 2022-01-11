@@ -4,6 +4,12 @@ const countDiv = document.getElementById('count')
 
 countDiv.innerHTML = "Total Tasks: "+ draggables.length
 
+containers.forEach(container => {
+    container.querySelector('.counter').innerHTML = (container.childElementCount - 1)
+    const width = (container.childElementCount - 1)*100/draggables.length
+    container.querySelector('.colordiv').style.width = width + '%'
+})
+
 draggables.forEach(draggable => {
     draggable.addEventListener('dragstart',() => {
         draggable.classList.add('dragging')
@@ -22,11 +28,16 @@ containers.forEach(container => {
         const draggable = document.querySelector('.dragging')
         if (afterElement == null){
             container.appendChild(draggable)
-            container.querySelector('count').innerHTML = "@" + container.querySelectorAll('.draggable').length
+            // container.querySelector('.counter').innerHTML = (container.childElementCount - 1) 
         } else {
             container.insertBefore(draggable, afterElement)
-            container.querySelector('count').innerHTML = "@" + container.querySelectorAll('.draggable').length
+            // container.querySelector('.counter').innerHTML = (container.childElementCount - 1) 
         }
+        containers.forEach(container => {
+            container.querySelector('.counter').innerHTML = (container.childElementCount - 1)
+            const width = (container.childElementCount - 1)*100/draggables.length
+            container.querySelector('.colordiv').style.width = width + '%'
+        })
     })
 })
 

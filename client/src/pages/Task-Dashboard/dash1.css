@@ -30,7 +30,7 @@
 .title{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: var(--btn-color);
     padding: 0.3rem 1rem 0.3rem 1rem;
     box-shadow: 0rem 0rem 1rem -0.5rem;
@@ -38,14 +38,15 @@
     height: 10vh;
     width: 12vw;
     flex-direction: column;
-    margin-bottom:1rem;
+    margin-bottom: 1rem;
+    align-content: center;
 }
 .title-head{
     display: flex;
-    justify-content: space-around;
-    height: 100%;
     align-items: center;
-    height: 20%;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
 }
 .story{
     background-color: var(--1);
@@ -54,16 +55,28 @@
     box-shadow: 0rem 0rem 1rem -0.5rem;
     font-size: 0.8rem;
 }
+.progress{
+    background-color: rgba(128, 128, 128, 0.753);
+    height: 1.5vh;
+    width: 10vw;
+    border-radius: 5rem;
+}
 .colordiv{
     background-color: gray;
     height: 1.5vh;
-    width: 10vw;
+    width: 100%;
     border-radius: 5rem;
 }
 .text{
     font-size: 1.5rem;
     font-weight: bold;
     margin: 0.5rem;
+}
+.counter{
+    margin: 0;
+    background-color: white;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem ;
+    border-radius: 2rem;
 }
 .draggable{
     padding: 1rem;

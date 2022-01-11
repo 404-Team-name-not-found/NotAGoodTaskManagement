@@ -24,6 +24,8 @@ function LoginForm({ injectTo }) {
   `;
 
   injectHTMLToElement(FormTemplate, injectTo);
+
+  
 }
 
 export default LoginForm;
