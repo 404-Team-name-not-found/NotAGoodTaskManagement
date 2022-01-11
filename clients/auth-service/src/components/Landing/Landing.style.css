@@ -51,6 +51,37 @@ h1 {
   background-color: var(--bg-color);
 }
 
+.popup{
+  position:fixed;
+  background-color: var(--bg-color);
+  border: 1px solid black;
+  display:flex;
+  flex-direction:column;
+  width:40vh;
+  height:60vh;
+  border-radius:20px;
+  justify-content:center;
+  text-align:center;
+  font-family: 'Montserrat', sans-serif; 
+  font-weight:bold;
+  top:20%;
+  left:42%; 
+  visibility:hidden;
+  z-index:1;
+
+}
+.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+.close {
+  visibility: hidden ;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+
 /* Animation */
 .parallax > use {
   animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;

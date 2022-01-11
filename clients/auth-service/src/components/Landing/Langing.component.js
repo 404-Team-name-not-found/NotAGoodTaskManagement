@@ -1,14 +1,25 @@
 import { injectHTMLToElement } from '../../utils/dom.service';
 import './Landing.style.css';
+import './popup'
 
 function landingPage({ injectTo }) {
+  const popupHeader = "Login"
   const FormTemplate = `
   <div class="header">
   <div class="inner-header flex">
 
     <h1>Welcome To TaskApp</h1>
     <!-- <a href="../Sign-Up/signin.html"><button>Get Started</button></a> -->
-    <button id="start">Get Started</button>
+    <button id="start" onclick="myFunction()">Get Started</button>
+    <div class="popup" id="myPopup">
+      <div id="popup-header">
+        ${popupHeader}
+      </div>
+      <div id="popup-main" />
+      <div id="popup-footer">
+        <button id="end" onclick="closeFunc()">close</button>
+      </div>
+    </div>
     </div>
   <!--Waves Container-->
   <div>
@@ -32,13 +43,22 @@ function landingPage({ injectTo }) {
 
   injectHTMLToElement(FormTemplate, injectTo);
 
+  const popupMain = document.getElementById('popup-main')
   const start = document.getElementById('start')
-  const popup = document.getElementById('new')
-
-  start.addEventListener('click' , () => {
-      console.log('hey')
-      // popup.innerHTML = comp1 
-  })
+  const end = document.getElementById('end')
+  
+  start.onclick = () => {
+    const popup = document.getElementById("myPopup")
+    popup.classList.toggle("show")
+    injectHTMLToElement
+    // window.location.href = window.location.href + "/log-in"
+  } 
+  end.onclick = () => {
+        window.location.reload();
+        // var popup = document.getElementById("myPopup");
+        // popup.classList.toggle("close")
+    }
+  
 
 }
 
