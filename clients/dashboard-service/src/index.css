@@ -51,10 +51,6 @@ body {
   padding: 20px 0;
 }
 
-.sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
 .sidebar ul li a {
   padding: 10px;
   font-size: 1.1em;
@@ -62,8 +58,9 @@ body {
 }
 
 .sidebar ul li a:hover {
-  color: #fbab16;
+  color: #fbab16 !important;
   background: #fff;
+  cursor: pointer;
 }
 
 .sidebar ul li.active > a, a[aria-expanded="true"] {
@@ -75,10 +72,4 @@ ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
   background: #EB7A02;
-}
-
-a, a:hover, a:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
 }
