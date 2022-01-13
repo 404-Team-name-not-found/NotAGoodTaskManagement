@@ -2,7 +2,6 @@ const path = require("path");
 const fastify = require("fastify")({ logger: true });
 const fastifySwagger = require("fastify-swagger");
 const swaggerOptions = require("./swagger.config");
-const { json } = require("express/lib/response");
 
 const PORT = process.env.PORT || 8080;
 

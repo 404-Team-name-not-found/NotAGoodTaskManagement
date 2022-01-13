@@ -1,9 +1,5 @@
 const pool = require("./../../services/DB/sql.connections").pool;
-const {
-  getItems,
-  getItem,
-  DeleteItem,
-} = require("./../../services/DB/genericCrudQueries");
+const {getItems,getItem,DeleteItem,} = require("./../../services/DB/genericCrudQueries");
 const SCHEMA = "public";
 const dumyData = require("../../../storyData");
 const story = {
