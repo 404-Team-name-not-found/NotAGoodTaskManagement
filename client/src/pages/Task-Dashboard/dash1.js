@@ -28,10 +28,8 @@ containers.forEach(container => {
         const draggable = document.querySelector('.dragging')
         if (afterElement == null){
             container.appendChild(draggable)
-            // container.querySelector('.counter').innerHTML = (container.childElementCount - 1) 
         } else {
             container.insertBefore(draggable, afterElement)
-            // container.querySelector('.counter').innerHTML = (container.childElementCount - 1) 
         }
         containers.forEach(container => {
             container.querySelector('.counter').innerHTML = (container.childElementCount - 1)

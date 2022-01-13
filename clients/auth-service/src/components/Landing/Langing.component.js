@@ -1,25 +1,24 @@
-import { injectHTMLToElement } from '../../utils/dom.service';
+import { injectHTMLToElement, replaceElementInnerHTML } from '../../utils/dom.service';
+import CardHeader from '../CardHeader/CardHeader.component';
+import LoginForm from '../Form/Login/LoginForm.component';
+import SignUpForm from '../Form/SignUp/SignUpForm.component';
 import './Landing.style.css';
-import './popup'
 
 function landingPage({ injectTo }) {
   const popupHeader = "Login"
   const FormTemplate = `
   <div class="header">
-  <div class="inner-header flex">
-
-    <h1>Welcome To TaskApp</h1>
-    <!-- <a href="../Sign-Up/signin.html"><button>Get Started</button></a> -->
-    <button id="start" onclick="myFunction()">Get Started</button>
-    <div class="popup" id="myPopup">
-      <div id="popup-header">
-        ${popupHeader}
+    <div class="inner-header flex">
+      <h1>Welcome To TaskApp</h1>
+      <!-- <a href="../Sign-Up/signin.html"><button>Get Started</button></a> -->
+      <button id="start">Get Started</button>
+      <div class="popup" id="myPopup">
+        <button class="exit "id="end">X</button>
+        <div id="popup-header"></div>
+        <div id="popup-main"></div>
+        <div id="popup-footer">
+        </div>
       </div>
-      <div id="popup-main" />
-      <div id="popup-footer">
-        <button id="end" onclick="closeFunc()">close</button>
-      </div>
-    </div>
     </div>
   <!--Waves Container-->
   <div>
@@ -43,20 +42,36 @@ function landingPage({ injectTo }) {
 
   injectHTMLToElement(FormTemplate, injectTo);
 
-  const popupMain = document.getElementById('popup-main')
+  const Header = document.getElementById('popup-header')
+  const Main = document.getElementById('popup-main')
+  const Footer = document.getElementById('popup-footer')
+
   const start = document.getElementById('start')
   const end = document.getElementById('end')
-  
+ 
   start.onclick = () => {
     const popup = document.getElementById("myPopup")
     popup.classList.toggle("show")
-    injectHTMLToElement
-    // window.location.href = window.location.href + "/log-in"
-  } 
+    CardHeader ({ injectTo: Header , title: 'Login' },)
+    LoginForm ({ injectTo: Main })
+    const reset = document.getElementById('reset')
+    const signup = document.getElementById('sign-up')
+
+    reset.onclick = () => {
+      Header.innerHTML = ""
+      Main.innerHTML = ""
+      CardHeader ({ injectTo: Header , title: 'Reset Password' },)
+      ResetPassword ({ injectTo: Main })
+    }
+    signup.onclick = () => {
+      Header.innerHTML = ""
+      Main.innerHTML = ""
+      CardHeader ({ injectTo: Header , title: 'Sign Up' },)
+      SignUpForm ({ injectTo: Main })
+    }
+  }
   end.onclick = () => {
         window.location.reload();
-        // var popup = document.getElementById("myPopup");
-        // popup.classList.toggle("close")
     }
   
 

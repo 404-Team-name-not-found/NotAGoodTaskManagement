@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --bg-color: #F9F9F9;
   --btn1-color: #060505;
@@ -7,14 +14,8 @@
   --2:#665B52;
   --3:#488BAA;
 }
-
-* {
+.Lbody {
+  margin:0;
+  background-color: var(--bg-color);
   font-family: 'Montserrat', sans-serif; 
-}
-
-body {
-  background-image: url("./assets/bg.png");
-  background-size: cover;
-  min-height: 100vh;
-  margin: 0;
 }
