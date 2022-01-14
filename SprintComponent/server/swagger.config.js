@@ -1,0 +1,13 @@
+const swaggerOptions = {
+  exposeRoute: true,
+  routePrefix: "/docs",
+  swagger: {
+    info: {
+      title: "API route docs",
+      description: "Company Task Managment",
+      version: "1.0.0",
+    },
+  },
+};
+
+module.exports = swaggerOptions ;
