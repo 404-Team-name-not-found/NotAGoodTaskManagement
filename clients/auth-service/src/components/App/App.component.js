@@ -2,13 +2,14 @@ import { injectHTMLToElement } from "../../utils/dom.service";
 import CardHeader from "../CardHeader/CardHeader.component";
 import LoginForm from "../Form/Log-In/LoginForm.component";
 import SignUpForm from "../Form/Sign-Up/SignUpForm.component";
-import './app.style.css';
+import ProfileDisplayForm from "../Form/Profile-Display/ProfileDisplayForm.component";
+import "./App.style.css";
 
 const getCurrentLocation = () => window.location.href.split('/').pop();
 
 function App({ injectTo }) {
-  const currentLocation = "sign-up";
-  
+  const currentLocation = "profile-display";
+  // const currentLocation = getCurrentLocation();
   const appTemplate = `<div id="card-container" class="card-container"/>`;
   injectHTMLToElement(appTemplate, injectTo);
   const cardContainer = document.getElementById('card-container');
@@ -25,7 +26,11 @@ function App({ injectTo }) {
       LoginForm({ injectTo: cardContainer });
       break;
     };
-
+    case "profile-display": {
+      CardHeader({ injectTo: cardContainer, title: "Profile Display"});
+      ProfileDisplayForm({ injectTo: cardContainer });
+      break;
+    }
     default: injectHTMLToElement('<h1>404 page not found</h1>', injectTo);
   }
 
