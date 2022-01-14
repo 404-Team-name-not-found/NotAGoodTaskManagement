@@ -19,14 +19,14 @@
 }
 
 .input-field input {
-	border: 0.2rem solid var(--2);
+    border: 0.2rem solid var(--2);
     border-radius: 2.8rem;
     display: block;
     font-family: inherit;
     font-size: 1.5rem;
     padding: 1.5rem;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .input-field input:focus {
@@ -60,11 +60,11 @@
 }
 
 .input-field small {
-	color: #e74c3c;
+    color: #e74c3c;
     position: absolute;
     font-size: 1rem;
     bottom: 0;
-    left: 0;
+    left: 2rem;
     visibility: hidden;
 }
 

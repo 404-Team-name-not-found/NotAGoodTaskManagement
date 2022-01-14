@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+html{
+  background-color: var(--bg-color);
 }
 
 :root {
@@ -17,5 +21,4 @@
 .Lbody {
   margin:0;
   background-color: var(--bg-color);
-  font-family: 'Montserrat', sans-serif; 
 }

@@ -14,9 +14,9 @@ function landingPage({ injectTo }) {
       <button id="start">Get Started</button>
       <div class="popup" id="myPopup">
         <button class="exit "id="end">X</button>
-        <div id="popup-header"></div>
-        <div id="popup-main"></div>
-        <div id="popup-footer">
+        <div class="popup-header" id="popup-header"></div>
+        <div class="popup-main" id="popup-main"></div>
+        <div class="popup-footer" id="popup-footer">
         </div>
       </div>
     </div>

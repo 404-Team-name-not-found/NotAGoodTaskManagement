@@ -20,13 +20,11 @@
   margin: 40px 0;
 }
 form input{
-  height: 50px;
-  width: 80%;
-  border: 1px solid black;
-  border-radius: 20px;
-  outline: none;
-  padding: 0 15px;
-  font-size: 18px;
+  height: 5vh;
+  width: 20vw;
+  border: 0.3rem solid black;
+  border-radius: 3rem;
+  padding: 0 2rem;
 }
 form .username-field{
   width: 100%;
@@ -84,7 +82,6 @@ form .password-link{
 .signup-link{
   text-align: center;
   margin-top: 2rem;
-  
 }
 .container a{
   text-decoration: none;
@@ -93,27 +90,26 @@ form .password-link{
   text-decoration: underline;
 }
 form input[type="submit"]{
-  margin-top: 3rem;
+  margin-top: 4rem;
   border: none;
   background: var(--btn-color);
   color: white;
   cursor: pointer;
+  font-size: 3rem;
+  font-weight: bolder;
 }
-.btn-section{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 5vh;
+.btn-section button{
+  color: #060505;
+  background: #f9f9f9;
+  box-shadow: inset 0 0 15px -5px black;
+  font-size: 1.5rem;
+}
+.btn-section button:hover{
+  background-color: var(--1);
 }
 .resetpass{
   border-radius: 3rem 0rem 0rem 3rem;
-  color: #060505;
-  background: #f9f9f9;
-  box-shadow: inset 0 0 15px -5px black;
 }
 .sign-up{
   border-radius: 0rem 3rem 3rem 0rem;
-  color: #060505;
-  background: #f9f9f9;
-  box-shadow: inset 0 0 15px -5px black;
 }
