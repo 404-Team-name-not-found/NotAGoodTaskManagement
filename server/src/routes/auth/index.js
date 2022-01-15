@@ -1,12 +1,19 @@
+const controller = require('./auth.controller');
 
-function AuthRoutes(instance, options, done) {
-  instance.post('/signup', (request, reply) => {
-    // some logic ...
-    const jwtTOKEN = instance.jwt.sign(request.body);
-    reply.send({ jwtTOKEN });
-  });
 
-  done();
-}
+/**
+ * Used as a router for the Auth's routes.
+ * @param fastify 
+ * @param options
+ * @param done
+ */
 
-module.exports = AuthRoutes;
+const authRoutes = (fastify, options, done) => {
+    fastify.post('/signup', controller.signUp);
+    
+    fastify.post('/signin', controller.signIn);
+    
+    done();
+};
+
+module.exports = authRoutes;

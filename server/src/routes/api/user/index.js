@@ -11,13 +11,13 @@ function userRoutes(fastify, options, done) {
 
     fastify.get('/all', getUsers);
     
-    fastify.get('/:id', getUser);
+    fastify.get('/:email', getUser);
     
     fastify.post('/add', addUser);
     
-    fastify.put('/edit/:id', updateUser);
+    fastify.patch('/edit/:email', updateUser);
     
-    fastify.delete('/:id', deleteUser);
+    fastify.delete('/:email', deleteUser);
     
     done();
 };

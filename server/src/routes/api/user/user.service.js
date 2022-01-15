@@ -1,96 +1,158 @@
-// const postgreSQl = require('./postgreSQL.connection');
-// const genericService = require('../../services/GenericModelService');
-const axios = require('axios');
+const { default: fastify } = require('fastify');
 const { StatusCodes } = require('http-status-codes');
-// const { GET_DELETE_URL, ADD_URL } = require('../../../../utils/constants/nsApi.constants');
-// const { createConfig } = require('../../../services/configCreator.service');
-// const { getUser } = require('./user.controller');
-const pool = require("../../../../services/sql.connections").pool;
+const genericQueries = require("../../../../services/genericCrudQueries");
 
-const waitFor = (ms) => new Promise((res) => setTimeout(res, ms));
-const handleErrors = ({ response: { data } = {} }) => { throw new Error(JSON.stringify(data)); };
+const TABLE_NAME = "Users";
 
-const SCHEMA = 'public';
-
-const user = {
-    id: { type: 'number' },
-    name: { type: 'string' },
-    username: { type: 'string' },
-    email: { type: 'string' },
-    imgUrl: { type: 'string' },
-    title: { type: 'string' },
-    role: { type: 'string' },
-    phone: { type: 'string' },
-    groupId: { type: 'number' },
-};
-
-function getUsers(){ 
-    const query = `SELECT * FROM ${SCHEMA}.Users`;
-    return sendQuery(query);
+/**
+ * Used to get all existing users.
+ *
+ * @param {object} newUser (object representing the new user object to add)}
+ * @param {object} fastify (instance of fastify)
+ * 
+ * @returns relevant status code and array of all the user objects.
+ */
+async function getUsers() {
+    try {
+        let res;
+        await genericQueries.getItems(TABLE_NAME).then((queryResult) => { res = queryResult; });
+        return { users: res, status: StatusCodes.OK };
+    } catch (err) {
+        return { status: StatusCodes.BAD_REQUEST, error: err.message };
+    }
 }
 
-function getItemsWhere(property, value){
-    const query = `SELECT * FROM ${SCHEMA}.Users WHERE ${property} = $1`;
-    return sendQuery(query, [value]);
+/**
+ * Used to get a user by email.
+ *
+ * @param {object} newUser (object representing the new user object to add)}
+ * @param {object} fastify (instance of fastify)
+ * 
+ * @returns relevant status code and the wanted user object.
+ */
+async function getUser(email) {
+    try {
+        let isExist;
+        await genericQueries.isExist(TABLE_NAME, "email", email).then((queryResult) => { isExist = queryResult });
+        if (!isExist) throw new Error(`User with this email does not exist`);
+
+        let res;
+        await genericQueries.getItem(TABLE_NAME, "email", email).then((queryResult) => { res = queryResult });
+        return { user: res, status: StatusCodes.OK };
+    }
+    catch (err) {
+        return { status: StatusCodes.BAD_REQUEST, error: err.message };
+    }
 }
 
-const sendQuery = (query, values=[]) => {
-    // logger.databaseQuery(query + ', QUERY VALUES: ' + JSON.stringify(values));
-    return pool.query(query, values).then(queryRes => queryRes.length <= 1 ? queryRes.rows[0] : queryRes.rows);
-};
+/**
+ * Used to add a user.
+ *
+ * @param {object} newUser (object representing the new user object to add)}
+ * @param {object} fastify (instance of fastify)
+ * 
+ * @returns relevant status code.
+ */
+async function addUser(newUser, fastify) {
+    try {
+        let isExist;
+        await genericQueries.isExist(TABLE_NAME, "email", newUser.email).then((queryResult) => { isExist = queryResult });
+        if (isExist) throw new Error(`User with this email or username already exists`);
 
-// /**
-//  * add a user.
-//  *
-//  * @param {object} param0 { namespace (string representing the ns name), services (array representing the required services in the ns)}
-//  * @returns relevant status code.
-//  */
-// async function addUser({...user}) {
-//   try {
-//     const isExist = await getUser(id);
-//     if (isExist) throw new Error(`User with the name or the email of ${user} already exists`);
-//     await createNS(namespace, createConfig(namespace, services));
-//     return { status: StatusCodes.OK };
-//   } catch (error) { logger.error(error.message); return { status: StatusCodes.BAD_REQUEST, error: error.message }; }
-// }
+        // Generate hash for the user password and replace the unhashed one with the hashed
+        const hashedPassword = await fastify.bcrypt.hash(newUser.password);
+        newUser.password = hashedPassword;
 
-// /**
-//  * Used to update a namespace.
-//  *
-//  * @param {object} param0 { namespace (string representing the ns name), services (array representing the required services in the ns)}
-//  * @returns relevant status code.
-//  */
-// async function updateNamespace({ namespace, services }) {
-//   try {
-//     const isExist = await getNSConfig(namespace);
-//     if (!isExist) throw new Error(`NS with the name of ${namespace} does not exist`);
-//     await updateNS(namespace, createConfig(namespace, services));
-//     return { status: StatusCodes.OK };
-//   } catch (error) { logger.error(error.message); return { status: StatusCodes.BAD_REQUEST, error: error.message }; }
-// }
+        await genericQueries.insertItem(TABLE_NAME, newUser);
+        return { status: StatusCodes.OK };
+    }
+    catch (err) {
+        return { status: StatusCodes.BAD_REQUEST, error: err.message };
+    }
+}
 
-// /**
-//  * Used to update a namespace.
-//  *
-//  * @param {object} param0 { namespace (string representing the ns name), services (array representing the required services in the ns)}
-//  * @returns relevant status code.
-//  */
-// async function restartNSResourceOrService({ namespace, services, resources }) {
-//   try {
-//     const nsConfig = await getNSConfig(namespace);
-//     if (!nsConfig) throw new Error(`NS with the name of ${namespace} does not exist`);
-//     const tempConfig = {
-//       ...nsConfig,
-//       services: nsConfig.services.filter(({ id }) => !services.includes(id)),
-//       resources: nsConfig.resources.filter(({ id }) => !resources.includes(id)),
-//     };
-//     await updateNS(namespace, tempConfig);
-//     await waitFor(10000);
-//     await updateNS(namespace, nsConfig);
-//     return { status: StatusCodes.OK };
-//   } catch (error) { logger.error(error.message); return { status: StatusCodes.BAD_REQUEST, error: error.message }; }
-// }
+/**
+ * Used to update a user.
+ *
+ * @param {object} email (string representing the user's email)
+ * @param {object} updatedUser (object representing the properties to change)
+ *
+ * @returns relevant status code.
+ */
+async function updateUser(email, updatedUser) {
+    try {
+        let isExist;
+        await genericQueries.isExist(TABLE_NAME, "email", email).then((queryResult) => { isExist = queryResult });
+        if (!isExist) throw new Error(`User with the email- ${email} does not exist`);
+        await genericQueries.updateSpecificItem("email", email, TABLE_NAME, updatedUser);
+        return { status: StatusCodes.OK };
+    }
+    catch (error) {
+        return { status: StatusCodes.BAD_REQUEST, error: error.message };
+    }
+}
 
-// module.exports = { addNamespace, updateNamespace, restartNSResourceOrService };
-module.exports = { getUsers, getItemsWhere}
+/**
+ * Used to delete a user.
+ *
+ * @param {object} email (string representing the user's email)
+ * 
+ * @returns relevant status code.
+ */
+async function deleteUser(email) {
+    try {
+        const isExist = await genericQueries.isExist(TABLE_NAME, "email", email);
+        if (!isExist) throw new Error(`User with the email- ${email} does not exist`);
+        await genericQueries.deleteItem(TABLE_NAME, "email", email);
+        return { status: StatusCodes.OK };
+    }
+    catch (error) {
+        return { status: StatusCodes.BAD_REQUEST, error: error.message };
+    }
+}
+
+/**
+ * Used to sign up a user.
+ *
+ * @param {object} user (object representing the user's email)
+ * @param {object} fastify (instance of fastify)
+ * 
+ * @returns relevant status code.
+ */
+async function signUp(user, fastify) {
+    return await addUser(user, fastify);
+}
+
+/**
+ * Used to sign in a user.
+ *
+ * @param {object} user (object representing the user's email)
+ * @param {string} property (the property used for sign in)
+ * @param {string} value (the property's value) 
+ * @param {object} fastify (instance of fastify)
+ * 
+ * @returns relevant status code.
+ */
+async function signIn(user, property, value, fastify) {
+    try {
+        let isExist;
+        await genericQueries.isExist(TABLE_NAME, property, value).then((queryResult) => { isExist = queryResult });
+        if (!isExist) throw new Error("The username, the email or the password don't exist");
+        let existUser;
+        let res;
+        await genericQueries.getItem(TABLE_NAME, property, value).then((queryResult) => { existUser = queryResult; });
+
+        await fastify.bcrypt.hash(user.password)
+            .then(hash => fastify.bcrypt.compare(user.password, existUser.password))
+            .then(match => res = match)
+            .catch(err => { throw new Error(err.message) });
+        if (res) return { status: StatusCodes.OK, title: "You've been signed in successfully!" };
+        return { status: 400, title: "The username, the email or the password don't exist" };
+    }
+    catch (err) {
+        return { status: 400, title: err.message };
+    }
+}
+
+module.exports = { getUsers, getUser, addUser, updateUser, deleteUser, signUp, signIn };
 
