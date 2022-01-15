@@ -34,7 +34,7 @@ async function getUser(email) {
 
         let res;
         await genericQueries.getItem(TABLE_NAME, "email", email).then((queryResult) => { res = queryResult });
-        return { user: res, status: StatusCodes.OK };
+        return { user: res[0], status: StatusCodes.OK };
     }
     catch (err) {
         return { status: StatusCodes.BAD_REQUEST, error: err.message };
