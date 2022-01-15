@@ -77,6 +77,7 @@ async function addUser(newUser, fastify) {
  */
 async function updateUser(email, updatedUser) {
     try {
+        if (Object.keys(change).length === 0) throw new Error(The changed object was sent empty);
         let isExist;
         await genericQueries.isExist(TABLE_NAME, "email", email).then((queryResult) => { isExist = queryResult });
         if (!isExist) throw new Error(`User with the email- ${email} does not exist`);
