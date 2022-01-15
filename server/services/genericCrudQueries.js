@@ -1,4 +1,4 @@
-const pool = require("./sql.connections.js").pool;
+const pool = require("./sql.connections").pool;
 
 //helper function
 const getKeysAndValues = (object) => {
@@ -38,8 +38,8 @@ async function getItem(tableName, property, value) {
  * @resolve The row that was deleted
  */
 async function deleteItem(tableName, property, value) {
-  const query = `DELETE FROM "${tableName}" WHERE "${property}"=${value} RETURNING * `;
-  const res = pool.query(query);
+  const res = pool.query(
+    `DELETE FROM "${tableName}" WHERE "${property}"='${value}' RETURNING * `);
   return (await res).rows;
 }
 
@@ -66,7 +66,7 @@ async function isExist(tablename, colname, value) {
 async function updateSpecificItem(primaryKey, value, tableName, change) {
   const [keys, values] = getKeysAndValues(change);
   const update = keys.map((key, index) => `"${key}" = $${index + 1}`).join(",");
-  const query = `UPDATE public."${tableName}" SET ${update} WHERE "${primaryKey}" = ${value} RETURNING *`;
+  const query = `UPDATE public."${tableName}" SET ${update} WHERE "${primaryKey}" = '${value}' RETURNING *`;
   const res = pool.query(query, values);
   return await res.rows;
 }
@@ -87,12 +87,11 @@ async function sendCustomQuery(query, values) {
  * @resolve the created item
  */
 async function insertItem(tablename, objectToInsert) {
-  const [keys, values] = getKeysAndValues(objectToInsert);
-  const pramKeys = keys.map((item) => `"${item}"`).join(",");
-  const valuesString = [...Array(values.length)].map((c, index) => `$${index + 1}`).join(",");
-  const query = `INSERT INTO "${tablename}" (${pramKeys}) VALUES (${valuesString}) RETURNING *`;
-  const res = pool.query(query, values);
+  const [keys,values]= getKeysAndValues(objectToInsert);
+  const pramKeys = keys.map((item) => `"${item}"` ).join(',');
+  const valuesString = [...Array(values.length)].map((c,index)=> `$${index+1}`).join(',');
+  const query= `INSERT INTO "${tablename}" (${pramKeys}) VALUES (${valuesString}) RETURNING *`;
+  const res = pool.query(query,values);
   return (await res).rows;
 }
-
-module.exports = { getItem, getItems, deleteItem, updateSpecificItem, isExist, sendCustomQuery, insertItem };
+module.exports = {getItem, getItems, deleteItem, updateSpecificItem, isExist, sendCustomQuery, insertItem};
