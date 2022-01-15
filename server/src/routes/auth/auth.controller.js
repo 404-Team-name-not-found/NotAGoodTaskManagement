@@ -30,7 +30,7 @@ const signUp = {
     }
   },
   handler: async (request, reply) => {
-    const signObject = { username: request.body.username, email: email };
+    const signObject = { username: request.body.username, email: request.body.email };
     const jwtTOKEN = request.fastify.jwt.sign(signObject);
 
     try {
