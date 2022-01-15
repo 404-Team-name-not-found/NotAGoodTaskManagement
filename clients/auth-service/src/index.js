@@ -1,4 +1,4 @@
-import App from './components/App/app.component';
+import App from "./components/App/App.component";
 import './index.css';
 
 const root = document.getElementById('root');
