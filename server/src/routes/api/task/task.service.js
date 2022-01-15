@@ -33,7 +33,7 @@ async function getTask(id) {
 
         let res;
         await genericQueries.getItem(TABLE_NAME, "id", id).then((queryResult) => { res = queryResult });
-        return { task: res, status: StatusCodes.OK };
+        return { task: res[0], status: StatusCodes.OK };
     }
     catch (err) {
         return { status: StatusCodes.BAD_REQUEST, error: err.message };
