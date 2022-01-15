@@ -7,7 +7,7 @@ import './app.style.css';
 const getCurrentLocation = () => window.location.href.split('/').pop();
 
 function App({ injectTo }) {
-  const currentLocation = "log-in";
+  const currentLocation = "sign-up";
   
   const appTemplate = `<div id="card-container" class="card-container"/>`;
   injectHTMLToElement(appTemplate, injectTo);
