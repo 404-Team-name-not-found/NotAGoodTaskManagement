@@ -6,9 +6,6 @@ const TABLE_NAME = "Users";
 
 /**
  * Used to get all existing users.
- *
- * @param {object} newUser (object representing the new user object to add)}
- * @param {object} fastify (instance of fastify)
  * 
  * @returns relevant status code and array of all the user objects.
  */
@@ -25,8 +22,7 @@ async function getUsers() {
 /**
  * Used to get a user by email.
  *
- * @param {object} newUser (object representing the new user object to add)}
- * @param {object} fastify (instance of fastify)
+ * @param {string} email (string representing the user's email)
  * 
  * @returns relevant status code and the wanted user object.
  */
