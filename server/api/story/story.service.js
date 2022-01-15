@@ -1,7 +1,8 @@
-const pool = require("./../../services/DB/sql.connections").pool;
-const {getItems,getItem,DeleteItem,} = require("./../../services/DB/genericCrudQueries");
+const pool = require("./../../services/DB/sql.connections.js").pool;
+const {getItems,getItem,DeleteItem,} = require("./../../services/DB/genericCrudQueries.js");
+const {insertStory} = require("../../services/DB/insertQueries.js")
 const SCHEMA = "public";
-const dumyData = require("../../../storyData");
+
 const story = {
   name: { type: "string" },
   icon: { type: "string", format: "uri-template" },
@@ -9,12 +10,13 @@ const story = {
   startDate: { type: "string" },
   endDate: { type: "string" },
 };
+
 function getStorys() {
   return getItems("Story");
 }
 
-function getStory(tableName, id) {
-  return getItem(tableName, id);
+function getStory(id) {
+  return getItem("Story", id);
 }
 
 function updateStory(itemId, tableName, change) {
@@ -26,3 +28,5 @@ function deleteStory(tableName = "Story", id) {
 function addStory(newStory) {
   return insertStory(...newStory);
 }
+
+module.exports ={getStorys,getStory,updateStory,deleteStory,addStory}

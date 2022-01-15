@@ -3,7 +3,7 @@ const {
   StatusCodes,
   ReasonPhrases,
 } = require("http-status-codes");
-const service = require("./story.service");
+const service = require("./story.service.js");
 
 story = {
   name: { type: "string" },
@@ -67,7 +67,7 @@ const getStorys = {
   handler: async (req, reply) =>
     reply.send({
       responseTitle: ReasonPhrases.OK,
-      story: service.getStorys,
+      story: service.getStorys(),
     }),
 };
 
@@ -93,7 +93,7 @@ const getStory = {
     const { id } = req.params;
     reply.send({
       responseTitle: ReasonPhrases.OK,
-      story: service.getStory("Story", id),
+      story: service.getStory(id),
     });
   },
 };

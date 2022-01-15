@@ -6,7 +6,7 @@ const swaggerOptions = require("./swagger.config");
 const PORT = process.env.PORT || 8080;
 
 fastify.register(fastifySwagger, swaggerOptions);
-fastify.register(require("./api/story/index"))
+fastify.register(require("./api/story/index.js"));
 
 const startServer = async () => {
   try {
