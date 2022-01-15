@@ -1,5 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
-const genericQueries = require("../../../services/genericCrudQueries");
+const genericQueries = require("../../../../services/genericCrudQueries");
 
 const TABLE_NAME = "Messages";
 

@@ -192,11 +192,4 @@ const deleteMessage = {
     }
   },
 };
-
-module.exports = {
-  getMessages,
-  getMessage,
-  addMessage,
-  updateMessage,
-  deleteMessage,
-};
+module.exports = { getMessages, getMessage, addMessage, updateMessage, deleteMessage };
