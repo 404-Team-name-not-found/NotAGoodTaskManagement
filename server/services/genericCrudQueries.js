@@ -1,4 +1,4 @@
-const pool = require("./server/services/sql.connections").pool;
+const pool = require("./sql.connections").pool;
 
 //helper function
 const getKeysAndValues = (object) => {
@@ -25,9 +25,9 @@ async function getItems(tableName) {
  * @param {string} value
  * @resolve the requested items
  */
-async function getItem(tableName,property,value) {
+async function getItem(tableName, property, value) {
   const res = pool.query(`SELECT * FROM "${tableName}" WHERE ${property}='${value}'`);
-  return (await res).rows;
+  return (await res).rows[0];
 }
 
 /**
@@ -36,9 +36,9 @@ async function getItem(tableName,property,value) {
  * @param {Number} id
  * @resolve The row that was deleted
  */
-async function DeleteItem(tableName, id) {
+async function deleteItem(tableName, property, value) {
   const res = pool.query(
-    `DELETE FROM ${tableName} WHERE id=${id} RETURNING * `);
+    `DELETE FROM "${tableName}" WHERE ${property}='${value}' RETURNING * `);
   return (await res).rows;
 }
 
@@ -67,7 +67,7 @@ async function isExist(tablename, colname, value) {
 async function updateSpecificItem(primaryKey, value, tableName, change) {
   const [keys, values] = getKeysAndValues(change);
   const update = keys.map((key, index) => `"${key}" = $${index + 1}`).join(",");
-  const query = `UPDATE public."${tableName}" SET ${update} WHERE "${primaryKey}" = ${value} RETURNING *`;
+  const query = `UPDATE public."${tableName}" SET ${update} WHERE "${primaryKey}" = '${value}' RETURNING *`;
   const res = pool.query(query, values);
   return await res.rows;
 }
@@ -89,7 +89,7 @@ async function sendCustomQuery(query, values) {
  * @param {*} objectToInsert 
  * @resolve the created item
  */
-async function InsertItem(tablename, objectToInsert) {
+async function insertItem(tablename, objectToInsert) {
   const [keys,values]= getKeysAndValues(objectToInsert);
   const pramKeys = keys.map((item) => `"${item}"` ).join(',');
   const valuesString = [...Array(values.length)].map((c,index)=> `$${index+1}`).join(',');
@@ -97,4 +97,4 @@ async function InsertItem(tablename, objectToInsert) {
   const res = pool.query(query,values);
   return (await res).rows;
 }
-module.exports = {getItem, getItems, DeleteItem, updateSpecificItem, isExist, sendCustomQuery, InsertItem};
+module.exports = {getItem, getItems, deleteItem, updateSpecificItem, isExist, sendCustomQuery, insertItem};
