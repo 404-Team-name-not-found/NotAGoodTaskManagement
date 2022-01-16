@@ -1,0 +1,122 @@
+
+:root {
+    --bg-color: #F9F9F9;
+    --btn1-color: #060505;
+    --btn-color: #EFA135;
+    --1:#B5AFA4;
+    --2:#EB7A02;
+    --3:#665B52;
+    --4:#488BAA;
+  }
+
+ body {
+    font-family: 'Montserrat', sans-serif; 
+  }
+  
+#header{
+    position: absolute;
+    top:0;
+    width: 100%;
+}
+
+.popup{
+    position:fixed;
+    background-color: var(--bg-color);
+    border: 1px solid black;
+    display:flex;
+    flex-direction:column;
+    width:40vh;
+    height:70vh;
+    border-radius:20px;
+    justify-content:center;
+    text-align:center;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight:bold;
+    top:20%;
+    left:42%; 
+    visibility:hidden;
+    z-index:1;
+ 
+}
+.title{
+    position:absolute;
+    left:2vh;
+    padding:-3px;
+}
+.input{
+    margin-top:20px;
+}
+.title.two{
+    margin-left:20vh;
+}
+.firstInput{
+    display: flex;
+    flex-direction:row;
+}
+#users{
+    border: 1px solid var(--btn-color);
+    background-color: var(--bg-color);
+    position: relative;
+}
+input{
+     border: 1px solid var(--btn-color);
+    background-color: var(--bg-color);
+    position: relative;
+    width:90%;
+    height:2vh;
+    max-height: 5vh;
+    margin: 20px;
+    border-radius:20px;
+    padding: 14px;
+}
+.must{
+    color:red;
+    font-weight: bold;
+}
+.text.des{
+    height:6vh;
+}
+.input.des{
+    height:8vh;
+}
+.text.one{
+    width:45%;
+    position: relative;
+    margin-right: 3vh;
+    margin-left: 2vh;
+}
+.bottom{
+    position: absolute;
+    display: flex;
+    flex-direction:row;
+    left:7vh;
+    margin:5px;
+    bottom:2vh;
+}
+.btn{
+    margin: 10px;
+    width:9vh;
+
+}
+.show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+  #editText{
+      color:red;
+      display: inline-block;
+      z-index: 1;
+      bottom:5vh;
+  }

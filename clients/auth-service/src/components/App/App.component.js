@@ -2,6 +2,7 @@ import { injectHTMLToElement } from "../../utils/dom.service";
 import CardHeader from "../CardHeader/CardHeader.component";
 import LoginForm from "../Form/Log-In/LoginForm.component";
 import SignUpForm from "../Form/Sign-Up/SignUpForm.component";
+import CreateTask  from "../CreateTask/CreateTask.component";
 import './app.style.css';
 
 const getCurrentLocation = () => window.location.href.split('/').pop();
@@ -15,14 +16,18 @@ function App({ injectTo }) {
   console.log(currentLocation);
   switch (currentLocation) {
     case 'sign-up': {
-      CardHeader({ injectTo: cardContainer, title: 'something' });
-      SignUpForm({ injectTo: cardContainer });
+       CardHeader({ injectTo: cardContainer, title: 'aa' });
+      CreateTask({injectTo: cardContainer})
+      
+      // SignUpForm({ injectTo: cardContainer });
       break;
     };
 
     case 'log-in': {
       CardHeader({ injectTo: cardContainer, title: 'something' });
-      LoginForm({ injectTo: cardContainer });
+      CreateTask({injectTo: cardContainer})
+      
+      // LoginForm({ injectTo: cardContainer });
       break;
     };
 
