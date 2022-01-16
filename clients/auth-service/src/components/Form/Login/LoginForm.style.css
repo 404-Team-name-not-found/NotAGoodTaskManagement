@@ -1,18 +1,3 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: var(--bg-color);
-  font-family: 'Montserrat', sans-serif; 
-}
-
 .container{
   background: var(--bg-color);
   width: 480px;
@@ -21,7 +6,6 @@ body {
   border-radius: 2rem;
   box-shadow: 0 0rem 2rem -1rem;
 }
-
 .container header{
   background-color: var(--btn1-color);
   color: var(--bg-color);
@@ -31,109 +15,101 @@ body {
   width: 60%;
   margin-left: 20%;
   border-radius: 0 0 2rem 2rem;
-  
 }
-
 .container form{
   margin: 40px 0;
 }
-
 form input{
-  height: 50px;
-  width: 80%;
-  border: 1px solid black;
-  border-radius: 20px;
-  outline: none;
-  padding: 0 15px;
-  font-size: 18px;
+  height: 5vh;
+  width: 20vw;
+  border: 0.3rem solid black;
+  border-radius: 3rem;
+  padding: 0 2rem;
 }
-
 form .username-field{
   width: 100%;
   margin-top: 9rem;
   margin-bottom: 2rem;
 }
-
 form input::placeholder{
   color: #777;
   font-size: 17px;
 }
-
 form .username-field .input{
   position: relative;
 } 
-
 form .username-field .error-text{
   margin-top: 5px;
   color: red;
   text-align: left;
   margin-left: 55px;
 }
-
 form .username-field .invalid-text{
   margin-top: 5px;
   color: red;
   text-align: left;
   margin-left: 55px;
 }
-
 form .username-field .error2{
   display: none;
 }
-
 form .username-field.error2 .error2{
   display: block;
 }
-
 form .password-field .error-text{
   margin-top: 5px;
   color: red;
   text-align: left;
   margin-left: 55px;
 }
-
 form .username-field .error{
   display: none;
 }
-
 form .username-field.error .error{
   display: block;
 }
-
 form .password-field .error{
   display: none;
 }
-
 form .password-field.error .error{
   display: block;
 }
-
 form .password-link{
   text-align: left;
   margin-top: 2rem;
   margin-left: 55px;
 }
-
 .signup-link{
   text-align: center;
   margin-top: 2rem;
-  
 }
-
 .container a{
   text-decoration: none;
 }
-
 .container a:hover{
   text-decoration: underline;
 }
-
 form input[type="submit"]{
-  margin-top: 3rem;
+  margin-top: 4rem;
   border: none;
   background: var(--btn-color);
   color: white;
   cursor: pointer;
+  font-size: 3rem;
+  font-weight: bolder;
 }
-
-
+.btn-section button{
+  color: #060505;
+  background: #f9f9f9;
+  box-shadow: inset 0 0 15px -5px black;
+  font-size: 1.5rem;
+}
+.btn-section button:hover{
+  background-color: var(--1);
+}
+.resetpass{
+  border-radius: 3rem 0rem 0rem 3rem;
+}
+.sign-up{
+  border-radius: 0rem 3rem 3rem 0rem;
+}
