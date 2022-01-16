@@ -1,7 +1,7 @@
 const { getSprint,  getSprints,  addSprint,  updateSprint,  deleteSprint, } = require('./sprint.controller');
      
 /**
- * Used as a router for the User's routes.
+ * Used as a router for the Sprint's routes.
  *
  * @param fastify fastify instance
  * @param options
@@ -15,7 +15,7 @@ function sprintRoutes(fastify, options, done) {
     
     fastify.post('/add', addSprint);
     
-    fastify.put('/edit/:id', updateSprint);
+    fastify.put('/edit/:name', updateSprint);
     
     fastify.delete('/:id', deleteSprint);
     
