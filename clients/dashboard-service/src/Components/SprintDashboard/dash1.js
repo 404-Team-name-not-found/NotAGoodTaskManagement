@@ -64,23 +64,22 @@ const title = document.getElementById('title');
 const color = document.getElementById('color');
 
 addTablebtn.onclick = () => {
-    const popup = document.getElementById("popup")
+    const popup = document.getElementById("tablepop")
     popup.classList.toggle("show")
-    const sumbitbtn = document.getElementById("sumbit")
-    const titleValue = title.value.trim();
-    const colorValue = color.value.trim();
-    sumbitbtn.onclick = () => {
-        addTable (titleValue,colorValue)        
+    const tableBtn = document.getElementById("table-btn")
+
+    tableBtn.onclick = () => {
+        addTable (title.value,color.value)        
     }  
 }
 
-function addTable({title,color}){
+function addTable(title,color){
     const TableTemplate=`
     <div class="container">
         <div id="title" class="title">
             <div class="title-head">
                 <p class="text"> ${title} </p>
-                <h2 class="counter"> %</h2>
+                <h2 class="counter"> 0 </h2>
             </div>
             <div class="progress">
                 <div class="colordiv" style="background-color: ${color};"></div>
@@ -88,5 +87,25 @@ function addTable({title,color}){
         </div>
     </div>
     `
-    section.innerHTML(TableTemplate);
+    section.insertAdjacentHTML('beforeend',TableTemplate);
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~Add Task~~~~~~~~~~~~~~~~~~~~~
+const addTaskbtn = document.getElementById('addtask')
+const description = document.getElementById('description')
+
+addTaskbtn.onclick = () => {
+    const popup = document.getElementById("taskpop")
+    popup.classList.toggle("show")
+    const taskBtn = document.getElementById("task-btn")
+
+    taskBtn.onclick = () => {
+        addTask (description.value)        
+    }  
+}
+function addTask(description){
+    const TaskTemplate=`
+    <p class="draggable" draggable="true">${description}</p>
+    `
+    containers[0].insertAdjacentHTML('beforeend',TaskTemplate);
 }
